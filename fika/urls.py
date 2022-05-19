@@ -22,3 +22,5 @@ urlpatterns = [
     path("", include("home.urls")),
     path('admin/', admin.site.urls),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+handler404 = "home.views.page_not_found_view"
