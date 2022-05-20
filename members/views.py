@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from django.contrib.auth.forms import UserCreationForm
+from .forms import RegisterUserForm
 
 
 def member_login(request):
@@ -35,7 +35,7 @@ def member_logout(request):
 def member_registration(request):
     """Registers new user accounts"""
     if request.method == "POST":
-        form = UserCreationForm(request.POST)
+        form = RegisterUserForm(request.POST)
         # Check if form is valid
         if form.is_valid():
             form.save()
@@ -52,6 +52,6 @@ def member_registration(request):
             return redirect("home")
     else:
         # Create empty form on req. method GET
-        form = UserCreationForm()
+        form = RegisterUserForm()
 
     return render(request, "authenticate/register_user.html", {"form": form})
