@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-6 mt-5 mx-auto">
+                {% if form.errors %}
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        <p class="mb-0">There was an error with your form!</p>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6 mt-3 mx-auto">
+                <h1>Register</h1>
+                <form action="{% url 'register' %}" method="post">
+                    {% csrf_token %}
+                      {{form.as_p}}
+                      <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>    
+    </div>
+{% endblock %}

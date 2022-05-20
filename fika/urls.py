@@ -20,7 +20,9 @@ from django.urls import path, include
 
 urlpatterns = [
     path("", include("home.urls")),
-    path('admin/', admin.site.urls),
+    path("admin/", admin.site.urls),
+    path("members/", include("django.contrib.auth.urls")),
+    path("members/", include("members.urls")),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 handler404 = "home.views.page_not_found_view"
