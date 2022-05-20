@@ -23,3 +23,9 @@ def member_login(request):
             return redirect("login")
 
     return render(request, "authenticate/login.html", {})
+
+
+def member_logout(request):
+    logout(request)
+    messages.success(request, ("Logout was successful!"))
+    return redirect("home")
