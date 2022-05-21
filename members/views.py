@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .forms import RegisterUserForm
 
@@ -25,7 +26,7 @@ def member_login(request):
 
     return render(request, "authenticate/login.html", {})
 
-
+@login_required(login_url="/members/login")
 def member_logout(request):
     logout(request)
     messages.success(request, ("Logout was successful!"))
@@ -56,7 +57,7 @@ def member_registration(request):
 
     return render(request, "authenticate/register_user.html", {"form": form})
 
-
+@login_required(login_url="/members/login")
 def member_profile(request):
     context = {
         "user": request.user
