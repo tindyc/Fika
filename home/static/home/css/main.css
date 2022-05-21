@@ -276,6 +276,37 @@ h1 span {
         padding-bottom: 144px;
     }
 
+
+
+    /* About us Styles */
+
+    .about-container.row {
+        padding: 70px;
+    }
+
+    .about-images {
+        padding: 20px;
+    }
+
+    .team {
+        padding: 80px;
+    }
+
+    .team h3.font-weight-bold {
+        padding-bottom: 30px;
+    }
+
+
+    .team img {
+            overflow:hidden;
+            -webkit-border-radius:50px;
+            -moz-border-radius:50px;
+            border-radius:50px;
+            width:90px;
+            height:90px;
+            background-size:90px 0px; 
+      }
+      
     /* Footer Styles Start Here */
 
 
