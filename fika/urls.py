@@ -23,6 +23,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("members/", include("django.contrib.auth.urls")),
     path("members/", include("members.urls")),
+    path("contact/", include("contact.urls")),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 handler404 = "home.views.page_not_found_view"
