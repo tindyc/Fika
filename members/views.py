@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .forms import RegisterUserForm
+from .forms import RegisterUserForm, UpdateUserForm
 
 
 def member_login(request):
@@ -68,4 +68,14 @@ def member_profile(request):
 
 @login_required(login_url="/members/login")
 def member_edit(request):
-    return render(request, "members/member_edit.html", {})
+    if request.method == "POST":
+        user_form = UpdateUserForm(request.POST, instance=request.user)
+        # Check if form is valid
+        if user_form.is_valid():
+            user_form.save()
+            messages.success(request, "Your profile is updated successfully!")
+            return redirect("profile")
+    else:
+        user_form = UpdateUserForm(instance=request.user)
+
+    return render(request, "members/member_edit.html", {"user_form": user_form})
