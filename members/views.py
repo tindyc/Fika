@@ -1,7 +1,11 @@
 from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
+from django.contrib.auth.views import PasswordChangeView, PasswordResetView
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .forms import RegisterUserForm
+from django.contrib.messages.views import SuccessMessageMixin
+from .forms import RegisterUserForm, UpdateUserForm
 
 
 def member_login(request):
@@ -25,7 +29,7 @@ def member_login(request):
 
     return render(request, "authenticate/login.html", {})
 
-
+@login_required(login_url="/members/login")
 def member_logout(request):
     logout(request)
     messages.success(request, ("Logout was successful!"))
@@ -55,3 +59,43 @@ def member_registration(request):
         form = RegisterUserForm()
 
     return render(request, "authenticate/register_user.html", {"form": form})
+
+@login_required(login_url="/members/login")
+def member_profile(request):
+    context = {
+        "user": request.user
+    }
+
+    return render(request, "members/member_profile.html", context)
+
+
+@login_required(login_url="/members/login")
+def member_edit(request):
+    if request.method == "POST":
+        user_form = UpdateUserForm(request.POST, instance=request.user)
+        # Check if form is valid
+        if user_form.is_valid():
+            user_form.save()
+            messages.success(request, "Your profile is updated successfully!")
+            return redirect("profile")
+    else:
+        user_form = UpdateUserForm(instance=request.user)
+
+    return render(request, "members/member_edit.html", {"user_form": user_form})
+
+
+class ChangePasswordView(SuccessMessageMixin, PasswordChangeView):
+    template_name = "members/change_password.html"
+    success_message = "Successfully changed your password!"
+    success_url = reverse_lazy("profile")
+
+
+class ResetPasswordView(SuccessMessageMixin, PasswordResetView):
+    template_name = "authenticate/reset_password.html"
+    email_template_name = "authenticate/email_reset_password.html"
+    subject_template_name = "authenticate/password_reset_subject"
+    success_message = "We've emailed you instructions for setting your password, " \
+                      "if an account exists with the email you entered. You should receive them shortly." \
+                      " If you don't receive an email, " \
+                      "please make sure you've entered the address you registered with, and check your spam folder."
+    success_url = reverse_lazy("home")

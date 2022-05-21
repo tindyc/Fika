@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block content %}
+<p>Username: {{ user }}</p>
+<p>Email: {{ user.email }}</p>
+<p>Name: {{ user.first_name }} {{ user.last_name }}</p>
+<a href="{% url 'profile_edit'%}" class="ms-3 btn btn-primary">Edit Profile</a>
+{% endblock %}

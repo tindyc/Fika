@@ -4,12 +4,12 @@ from django import forms
 
 
 class RegisterUserForm(UserCreationForm):
-    email = forms.EmailField(widget=forms.EmailInput(attrs={"class": "form-control"}))
+    email = forms.EmailField(required=True, widget=forms.EmailInput(attrs={"class": "form-control"}))
     first_name = forms.CharField(
-        max_length=50, widget=forms.TextInput(attrs={"class": "form-control"})
+        max_length=50, required=True, widget=forms.TextInput(attrs={"class": "form-control"})
     )
     last_name = forms.CharField(
-        max_length=50, widget=forms.TextInput(attrs={"class": "form-control"})
+        max_length=50, required=True, widget=forms.TextInput(attrs={"class": "form-control"})
     )
 
     class Meta:
@@ -29,3 +29,18 @@ class RegisterUserForm(UserCreationForm):
         self.fields["username"].widget.attrs["class"] = "form-control"
         self.fields["password1"].widget.attrs["class"] = "form-control"
         self.fields["password2"].widget.attrs["class"] = "form-control"
+
+
+class UpdateUserForm(forms.ModelForm):
+    username = forms.CharField(max_length=100, required=True, widget=forms.TextInput(attrs={"class": "form-control"}))
+    email = forms.EmailField(required=True, widget=forms.EmailInput(attrs={"class": "form-control"}))
+    first_name = forms.CharField(
+        max_length=50, widget=forms.TextInput(attrs={"class": "form-control"})
+    )
+    last_name = forms.CharField(
+        max_length=50, required=True, widget=forms.TextInput(attrs={"class": "form-control"})
+    )
+
+    class Meta:
+        model = User
+        fields = ["username", "email", "first_name", "last_name"]
