@@ -2,5 +2,27 @@
 {% load static %}
 
 {% block content %}
-    <h1>Edit your profile</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-6 mt-5 mx-auto">
+            {% if form.errors %}
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <p class="mb-0">There was an error with your form!</p>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6 mt-3 mx-auto">
+                <h1>Edit your profile</h1>
+                <form action="{% url 'profile_edit' %}" method="post">
+                    {% csrf_token %}
+                      {{user_form.as_p}}
+                      <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>    
+    </div>
 {% endblock %}
