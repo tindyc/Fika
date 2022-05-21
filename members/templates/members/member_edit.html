@@ -19,7 +19,10 @@
                 <form action="{% url 'profile_edit' %}" method="post">
                     {% csrf_token %}
                       {{user_form.as_p}}
-                      <button type="submit" class="btn btn-primary">Submit</button>
+                      <div class="form-group d-flex justify-content-between">
+                          <button type="submit" class="btn btn-primary">Submit</button>
+                          <a class="ms-auto" href="{% url 'password_change'%}">Change Password</a>
+                      </div>
                     </div>
                 </form>
             </div>
