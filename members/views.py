@@ -63,4 +63,9 @@ def member_profile(request):
         "user": request.user
     }
 
-    return render(request, "member/member_profile.html", context)
+    return render(request, "members/member_profile.html", context)
+
+
+@login_required(login_url="/members/login")
+def member_edit(request):
+    return render(request, "members/member_edit.html", {})
