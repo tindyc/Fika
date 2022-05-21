@@ -55,3 +55,11 @@ def member_registration(request):
         form = RegisterUserForm()
 
     return render(request, "authenticate/register_user.html", {"form": form})
+
+
+def member_profile(request):
+    context = {
+        "user": request.user
+    }
+
+    return render(request, "member/member_profile.html", context)
