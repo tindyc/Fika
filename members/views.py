@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from django.contrib.auth.views import PasswordChangeView
+from django.contrib.auth.views import PasswordChangeView, PasswordResetView
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -88,3 +88,14 @@ class ChangePasswordView(SuccessMessageMixin, PasswordChangeView):
     template_name = "members/change_password.html"
     success_message = "Successfully changed your password!"
     success_url = reverse_lazy("profile")
+
+
+class ResetPasswordView(SuccessMessageMixin, PasswordResetView):
+    template_name = "authenticate/reset_password.html"
+    email_template_name = "authenticate/email_reset_password.html"
+    subject_template_name = "authenticate/password_reset_subject"
+    success_message = "We've emailed you instructions for setting your password, " \
+                      "if an account exists with the email you entered. You should receive them shortly." \
+                      " If you don't receive an email, " \
+                      "please make sure you've entered the address you registered with, and check your spam folder."
+    success_url = reverse_lazy("home")
