@@ -1,7 +1,10 @@
 from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
+from django.contrib.auth.views import PasswordChangeView
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.contrib.messages.views import SuccessMessageMixin
 from .forms import RegisterUserForm, UpdateUserForm
 
 
@@ -79,3 +82,9 @@ def member_edit(request):
         user_form = UpdateUserForm(instance=request.user)
 
     return render(request, "members/member_edit.html", {"user_form": user_form})
+
+
+class ChangePasswordView(SuccessMessageMixin, PasswordChangeView):
+    template_name = "members/change_password.html"
+    success_message = "Successfully changed your password!"
+    success_url = reverse_lazy("profile")
