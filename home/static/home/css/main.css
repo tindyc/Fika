@@ -229,7 +229,7 @@ footer {
 
 /*Login Page Styles */
 
-.login-container {
+.login-container{
     position: relative;
     overflow: hidden;
     max-width: 100%;
@@ -237,7 +237,14 @@ footer {
     height: 500px;
 }
 
-.login-container::before {
+.register-container{
+    position: relative;
+    overflow: hidden;
+    max-width: 100%;
+    padding:34px 0;
+}
+
+.login-container::before, .register-container::before {
     content: "";
     position: absolute;
     background: url("../images/hero-bg.svg") no-repeat center center/cover;
@@ -266,6 +273,16 @@ footer {
 
 .reset-pw-link:hover{
     color:#040921;
+}
+
+/* Register Page Styles */
+
+.register-form-wrapper{
+    padding: 0 13px;
+}
+
+.register-form label{
+    margin-bottom: 0.5rem;
 }
 
 @media screen and (min-width: 700px) {
@@ -379,6 +396,13 @@ footer {
 
     .form-control{
         width:50%;
+    }
+
+    /* Register Page Styles */
+
+    .register-container{
+        padding-left: 144px;
+        padding-bottom: 55px;
     }
 }
 
