@@ -1,10 +1,17 @@
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.contrib.auth.views import PasswordChangeView, PasswordResetView
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.contrib.auth.models import User
+from django.conf import settings
 from django.contrib.messages.views import SuccessMessageMixin
+from friend.friend_request_status import FriendRequestStatus
+
+from friend.models import FriendList, FriendRequest
+from friend.utils import get_friend_request_or_false
 from .forms import RegisterUserForm, UpdateUserForm
 
 
@@ -61,12 +68,72 @@ def member_registration(request):
     return render(request, "authenticate/register_user.html", {"form": form})
 
 @login_required(login_url="/members/login")
-def member_profile(request):
+def member_profile(request, *args, **kwargs):
+    """
+        is_self (boolean)
+        is_friend (boolean)
+            -1: NO_REQUEST_SENT
+            0: THEY_SENT_TO_YOU
+            1: YOU_SENT_TO_THEM
+    """
+
     context = {
         "user": request.user
     }
 
-    return render(request, "members/member_profile.html", context)
+    user_id = kwargs.get("user_id")
+
+    try:
+        account = User.objects.get(id=user_id)
+    except User.DoesNotExist:
+        return HttpResponse("User does not exist.")
+    
+    if account:
+
+        try:
+            friend_list = FriendList.objects.get(user=account)
+        except FriendList.DoesNotExist:
+            friend_list = FriendList(user=account)
+            friend_list.save()
+        friends = friend_list.friends.all()
+        context["friends"] = friends
+
+        # Define state template var.
+        is_self = True
+        is_friend = False
+        request_sent = FriendRequestStatus.NO_REQUEST_SENT.value
+        friend_requests = None
+        user = request.user
+        if user != account:
+            context["account"] = account
+            is_self = False
+            if friends.filter(id=user.id):
+                is_friend = True
+            else:
+                # CASE1: Req. has been sent from them to you 
+                is_friend = False
+                if get_friend_request_or_false(sender=account, receiver=user) != False:
+                    request_sent = FriendRequestStatus.THEY_SENT_TO_YOU.value
+                    context['pending_friend_request_id'] = get_friend_request_or_false(sender=account, receiver=user).id
+                # CASE2: You have sent the friend req. to them
+                elif get_friend_request_or_false(sender=account, receiver=user) != False:
+                    request_sent = FriendRequestStatus.YOU_SENT_TO_THEM.value
+                # CASE3: No request has been sent.
+                else:
+                    request_sent = FriendRequestStatus.NO_REQUEST_SENT.value
+        else:
+            try:
+                friend_requests = FriendRequest.objects.filter(receiver=user, is_active=True)
+            except:
+                pass
+        
+        context["is_self"] = is_self
+        context["is_friend"] = is_friend
+        context["BASE_URL"] = settings.BASE_URL
+        context["request_sent"] = request_sent
+        context["friend_request"] = friend_requests
+
+        return render(request, "members/member_profile.html", context)
 
 
 @login_required(login_url="/members/login")
