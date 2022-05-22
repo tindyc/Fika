@@ -51,9 +51,9 @@ By using our platform, we hope it will help users stay connected with their frie
 The three main objectives are;
 
 * ### To give users the power to connect with friends and family.
-    Our plan is to help users support and build on relationships they already have with friends and family. This is done by encouraging them to plan and create events that they want to experience with their friends.
+    Our plan is to help users support and build on relationships they already have with friends and family. This is done by encouraging them to plan and create events that they want to experience with their circle of friends.
 * ### To help prevent loneliness and isolation.
-    Whether it is a pandemic or a busy lifestyle, loneliness can affect anyone. We want you to reach out to people you already know to help support you. Our platform will give you the power and a voice to do this, by joining or creating an event in your circle of friends whenever you feel out of touch with them.
+    Whether it is a pandemic or a busy lifestyle, loneliness can affect anyone. We want you to reach out to people you already know, to help support you. Our platform will give you the power and a voice to do this, by joining or creating an event in your circle of friends whenever you feel out of touch with them.
 * ### To encourage you to get up and do something!
     Our platform is based on the creation of events. They can be as big or as small, as elaborate or as simple as you want them to be. The important thing is that you engage and connect with people and make it part of your routine.
 
@@ -94,14 +94,15 @@ Fika consists of a 5 page website that the user can navigate between via the nav
 
 ### Colour Scheme
 
-![Colour-scheme](static/images/colour-scheme.png)
+![Colour-scheme](./docs/images/color-scheme.png)
 
 The colour scheme used for this project was generated on [filler](https://filler.com).
 
+
+* Xiketic `#040921`
+* Maximum Blue `#5EBEDD`
+* Cultured `#F6F6F6`
 * White `#FFFFFF`
-* Black `#000000`
-* Color 3 `#030303`
-* Color 4 `#040404`
 
 ### Typography
 
@@ -206,10 +207,8 @@ The footer also contains a "Get in Touch" button which will allow the user to em
 
 ## Future Features:
 
-* Pagination for all pages to provide a better UX.
-* An option for user to save other peoples events to a favourites list.
 * An option for the user to comment on other users events as well as receive feedback on their own.
-* An option for the user to upload an image of their own instead of just a URL.
+* An option for the user to upload an image of their own for the event.
 
 
 ## Development
