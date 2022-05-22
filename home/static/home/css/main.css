@@ -227,9 +227,9 @@ footer {
 
 /*Styles for User Auth Pages */
 
-/*Login Page Styles */
+/*Login Page, Register Page & Password Reset Styles */
 
-.login-container{
+.login-container, .reset-container{
     position: relative;
     overflow: hidden;
     max-width: 100%;
@@ -244,7 +244,7 @@ footer {
     padding:34px 0;
 }
 
-.login-container::before, .register-container::before {
+.login-container::before, .register-container::before, .reset-container::before {
     content: "";
     position: absolute;
     background: url("../images/hero-bg.svg") no-repeat center center/cover;
@@ -264,7 +264,7 @@ footer {
     background-color: #040921;
 }
 
-.reset-pw-link{
+.reset-pw-link, .reset-pw-links a{
     display: block;
     margin-top: 13px;
     text-decoration: none;
@@ -275,7 +275,6 @@ footer {
     color:#040921;
 }
 
-/* Register Page Styles */
 
 .register-form-wrapper{
     padding: 0 13px;
@@ -289,7 +288,7 @@ footer {
 
     /* Home Page Styles */
 
-    /* Section 1 */
+    /* Hero Section Styles */
 
     .hero-content {
         margin-left: 89px;
@@ -338,8 +337,6 @@ footer {
         padding-bottom: 144px;
     }
 
-
-
     /* About us Styles */
 
     .about-container.row {
@@ -358,7 +355,6 @@ footer {
         padding-bottom: 30px;
     }
 
-
     .team img {
         overflow: hidden;
         -webkit-border-radius: 50px;
@@ -371,7 +367,6 @@ footer {
 
     /* Footer Styles Start Here */
 
-
     .footer-container {
         margin-left: 89px;
     }
@@ -383,7 +378,7 @@ footer {
 
     /*Styles for User Auth Pages */
 
-    /*Login Page Styles */
+    /*Login Page, Register Page & Reset Password Styles */
 
     .login-container {
         height: 600px;
@@ -398,11 +393,14 @@ footer {
         width:50%;
     }
 
-    /* Register Page Styles */
-
     .register-container{
         padding-left: 144px;
         padding-bottom: 55px;
+    }
+
+    .reset-pw-links a{
+        display: inline;
+        margin-right: 21px;
     }
 }
 
