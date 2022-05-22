@@ -44,7 +44,7 @@
                             <img src="{% static 'members/img/user.svg' %}" alt="" width="20" height="20" class="btn-icon me-1">{{ user.email }}
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                          <li><a class="dropdown-item" href="{% url 'profile' %}">Profile</a></li>
+                          <li><a class="dropdown-item" href="{% url 'profile' user.id %}">Profile</a></li>
                           <li><a class="dropdown-item" href="#">Friends</a></li>
                           <li><a class="dropdown-item" href="{% url 'profile_edit' %}">Edit Profile</a></li>
                           <li><a class="dropdown-item" href="{% url 'logout'%}">Logout</a></li>
@@ -89,7 +89,7 @@
                         </div>
                         <div class="col-12 col-lg-6 d-flex justify-content-end">
                             <a class="btn btn-primary">Add Friend</a>
-                            <a class="btn btn-secondary ms-3">View Profile</a>
+                            <a class="btn btn-secondary ms-3" href="{% url 'profile' account.0.id %}">View Profile</a>
                         </div>
                     </div>
                 {% endfor %}
