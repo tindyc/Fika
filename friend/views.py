@@ -1,10 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.models import User
 from friend.models import FriendRequest
+from django.contrib.auth.decorators import login_required
 import json
 
 # Create your views here.
+@login_required(login_url="/members/login")
 def friend_search_view(request, *args, **kwargs):
     context = {}
     if request.method == "GET":
@@ -20,6 +22,7 @@ def friend_search_view(request, *args, **kwargs):
     return render(request, "friend/search_results.html", context)
 
 
+@login_required(login_url="/members/login")
 def send_friend_request(request, *args, **kwargs):
 	user = request.user
 	payload = {}
@@ -54,3 +57,19 @@ def send_friend_request(request, *args, **kwargs):
 	else:
 		payload['response'] = "You must be authenticated to send a friend request."
 	return HttpResponse(json.dumps(payload), content_type="application/json")
+
+@login_required(login_url="/members/login")
+def friend_requests_view(request, *args, **kwargs):
+	context = {}
+	user = request.user
+	if user.is_authenticated:
+		user_id = kwargs.get("user_id")
+		account = User.objects.get(id=user_id)
+		if account == user:
+			friend_requests = FriendRequest.objects.filter(receiver=account, is_active=True)
+			context['friend_requests'] = friend_requests
+		else:
+			return HttpResponse("You can't view another users friend requests.")
+	else:
+		redirect("login")
+	return render(request, "friend/friend_requests.html", context)
