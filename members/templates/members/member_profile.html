@@ -11,9 +11,9 @@
         <div class="container">
             <!-- Nav Brand -->
             <a class="navbar-brand" href="#"><img src="{% static 'members/img/nav-logo.svg'%}" alt=""></a>
-            <form action="" class="ms-lg-3">
+            <form class="ms-lg-3 d-none d-lg-inline" id="search-large">
                 <div class="form-group">
-                    <input type="text" name="eventsearch" id="eventsearch" placeholder="Search for friends" class="form-control">
+                    <input type="text" name="friend-q-large" id="friend-q-large" placeholder="Search for friends" class="form-control">
                 </div>
             </form>
             <!-- Nav Burger Button -->
@@ -65,6 +65,16 @@
 
 {% block content %}
 <div class="container profile-container">
+    <div class="row d-flex d-lg-none">
+        <div class="col-12">
+            <p class="fs-1 mt-2">Friend Search</p>
+            <form class="ms-lg-3 d-inline d-lg-none" id="search-small">
+                <div class="form-group">
+                    <input type="text" name="friend-q-small" id="friend-q-small" placeholder="Search for friends" class="form-control">
+                </div>
+            </form>
+        </div>
+    </div>
     <div class="row">
         <div class="col-12 col-lg-4 mt-5 border-lg-end">
             <h1 class="d-block mb-4">Profile Details</h1>
@@ -182,6 +192,29 @@
 </footer>
 {% endblock %}
 
-{% block footer %}
+{% block postloadjs %}
+    <script>
+        // For large screens
+        const friendSearchFormLarge = document.getElementById("search-large");
+        const friendSearchInputLarge = document.getElementById("friend-q-large");
+        // For small screens
+        const friendSearchFormSmall = document.getElementById("search-small");
+        const friendSearchInputSmall = document.getElementById("friend-q-small");
 
+        // Add Event Listeners
+        friendSearchFormLarge.addEventListener("submit", onFriendSearchSubmit);
+        friendSearchFormSmall.addEventListener("submit", onFriendSearchSubmit);
+
+        // Event Listener func.
+        function onFriendSearchSubmit(event) {
+            event.preventDefault();
+            let query = friendSearchInputLarge.value;
+            // Change query input value if empty for large.
+            if (query === "") {
+                query = friendSearchInputSmall.value;
+            }
+
+            window.location.replace("{% url 'search' %}?q=" + query);
+        }
+    </script>
 {% endblock %}
