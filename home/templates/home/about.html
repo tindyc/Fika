@@ -78,10 +78,10 @@
 {% block content %}
 
 <!--Hero Section starts here-->
-<section class="hero-container container-fluid">
-    <div class="hero-content">
+<section class="about-hero-container container-fluid">
+    <div class="about-hero-content">
         <h1>
-            <span>Fika</span> is a concept, a state of mind, an atitude, and an important part in Swedish culture.
+            <span>Fika</span> is a concept, a state of mind, an attitude, and an important part of Swedish culture.
         </h1>
     </div>
 </section>
@@ -89,7 +89,7 @@
 <!--About us section starts here-->
 <section class="about-us container-fluid">
     <div class="about-container row">
-        <div class="col-md-6">
+        <div class="about-col d-flex flex-column justify-content-center  col-sm-12 col-md-6">
             <h2>
                 Why is Fika important to us?
             </h2>
@@ -99,12 +99,13 @@
                 and experience things with yours friends and family.
             </h3>
         </div>
-        <div class="col-md-6">
-            <img src="../../static/home/images/friends-and-family.png" class="about-images"
+        <div class="about-col d-flex justify-content-center col-sm-12 col-md-6">
+            <img src="../../static/home/images/friends-and-family.png" height="233" width="350" class="about-images"
                 alt="image of friends and family">
         </div>
-
-        <div class="col-md-6">
+    </div>
+    <div class="about-container row">
+        <div class="about-col d-flex flex-column justify-content-center col-sm-12 col-md-6">
             <h2>
                 Time slips by before you realise it.
             </h2>
@@ -114,23 +115,27 @@
                 and those experiences. And in turn help combat isolation.
             </h3>
         </div>
-        <div class="col-md-6">
-            <img src="../../static/home/images/time.png" class="about-images" alt="image of clock">
+        <div class="about-col d-flex justify-content-center col-sm-12 col-md-6">
+            <img src="../../static/home/images/time.png" height="233" width="350" class="about-images"
+                alt="image of clock">
         </div>
     </div>
+</section>
 
+<!--Dev Team section-->
+<section class="dev-team-container container-fluid">
 
-    <!--Dev Team section-->
-    <div class="dev-team">
-        <div class="row">
-           <div class="team-container text-center">
-            <h2>We want to encourage you to nurture the relationships you already have through real world events and hanging out.</h2>
-           </div>
-        
-           <div class="team-container team text-center">
+    <div class="row">
+        <div class="team-container text-center">
+            <h2>We want to encourage you to nurture the relationships you already have through real world events and
+                hanging out.</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="team text-center">
             <h3 class="font-weight-bold">Fika's Developer Team</h3>
             <div class="row">
-                <div class="col-lg">
+                <div class="col-lg col-md-4 col-sm-12">
                     <div class="profile-card">
                         <img src="https://ca.slack-edge.com/T0L30B202-U02P0L2LCF3-bad8a660d5f4-512"
                             class="profile-card-img-top" alt="...">
@@ -141,7 +146,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg">
+                <div class="col-lg col-md-4 col-sm-12">
                     <div class="profile-card">
                         <img src="https://ca.slack-edge.com/T0L30B202-U02NQ092JG3-b65635457959-512"
                             class="profile-card-img-top" alt="...">
@@ -152,7 +157,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg">
+                <div class="col-lg col-md-4 col-sm-12">
                     <div class="profile-card">
                         <img src="https://ca.slack-edge.com/T0L30B202-U036LAJSUKA-b435ea70e0bb-192"
                             class="profile-card-img-top" alt="...">
@@ -163,7 +168,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg">
+                <div class="col-lg col-md-6 col-sm-12">
                     <div class="profile-card">
                         <img src="https://ca.slack-edge.com/T0L30B202-UR3L41L9E-770f10cf5a4a-512"
                             class="profile-card-img-top" alt="...">
@@ -174,7 +179,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg">
+                <div class="col-lg col-md-6 col-sm-12">
                     <div class="profile-card">
                         <img src="https://ca.slack-edge.com/T0L30B202-UQ1TS27HN-1ff071e18e36-512"
                             class="profile-card-img-top" alt="...">
@@ -184,7 +189,10 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
     </div>
+
 </section>
 
 <!--Footer starts here -->
