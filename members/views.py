@@ -116,7 +116,7 @@ def member_profile(request, *args, **kwargs):
                     request_sent = FriendRequestStatus.THEY_SENT_TO_YOU.value
                     context['pending_friend_request_id'] = get_friend_request_or_false(sender=account, receiver=user).id
                 # CASE2: You have sent the friend req. to them
-                elif get_friend_request_or_false(sender=account, receiver=user) != False:
+                elif get_friend_request_or_false(sender=user, receiver=account) != False:
                     request_sent = FriendRequestStatus.YOU_SENT_TO_THEM.value
                 # CASE3: No request has been sent.
                 else:
@@ -132,6 +132,7 @@ def member_profile(request, *args, **kwargs):
         context["BASE_URL"] = settings.BASE_URL
         context["request_sent"] = request_sent
         context["friend_request"] = friend_requests
+        context["user_id"] = user_id
 
         return render(request, "members/member_profile.html", context)
 
