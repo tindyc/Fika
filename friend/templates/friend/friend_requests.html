@@ -87,7 +87,7 @@
                                     Username: {{ request.sender.username }}
                                 </p>
                                 <div class="d-inline-block ms-auto">
-                                    <button class="btn btn-success"><i class="fa-solid fa-circle-check"></i> Accept</button>
+                                    <button class="btn btn-success" id="accept-friend-request-btn" data-request="{% url 'accept-friend-request' request.id %}"><i class="fa-solid fa-circle-check"></i> Accept</button>
                                     <button class="btn btn-danger"><i class="fa-solid fa-circle-xmark me-1"></i> Decline</button>
                                 </div>
                             </div>
@@ -178,4 +178,19 @@
 
 {% block postloadjs %}
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script>
+        function updateUi(){
+            location.reload();
+        }
+
+        const acceptFriendRequestBtn = document.getElementById("accept-friend-request-btn");
+        if (acceptFriendRequestBtn != null ){
+
+            acceptFriendRequestBtn.addEventListener("click", function(){
+                acceptFriendRequest(acceptFriendRequestBtn.dataset.request, updateUi)
+            })
+        }
+    </script>
+
+    {% include "members/snippets/accept_friend_request.html" %}
 {% endblock %}
