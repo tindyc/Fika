@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'friend/css/friend.css' %}">
+{% endblock %}
+
+{% block page_header %}
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+            <!-- Nav Brand -->
+            <a class="navbar-brand" href="#"><img src="{% static 'members/img/nav-logo.svg'%}" alt=""></a>
+            <form class="ms-lg-3 d-none d-lg-inline" id="search-large">
+                <div class="form-group">
+                    <input type="text" name="friend-q-large" id="friend-q-large" placeholder="Search for friends" class="form-control">
+                </div>
+            </form>
+            <!-- Nav Burger Button -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!--NavBar Main Nav-->
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav ms-auto">
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link ms-lg-2" href="{% url 'about' %}">About Us</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url "home" %}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'about' %}">About Us</a>
+                    </li>
+                    {% endif %}
+                </ul>
+                <div class="d-flex ms-lg-2">
+                    {% if user.is_authenticated %}
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="{% static 'members/img/user.svg' %}" alt="" width="20" height="20" class="btn-icon me-1">{{ user.email }}
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                          <li><a class="dropdown-item" href="{% url 'profile' %}">Profile</a></li>
+                          <li><a class="dropdown-item" href="#">Friends</a></li>
+                          <li><a class="dropdown-item" href="{% url 'profile_edit' %}">Edit Profile</a></li>
+                          <li><a class="dropdown-item" href="{% url 'logout'%}">Logout</a></li>
+                        </ul>
+                      </div>
+                    {% else %}
+                    <a class="login-btn btn btn-secondary ms-3" href="{% url 'login' %}">Login</a>
+                    <a class="register-btn btn btn-dark ms-3" href="{% url 'register' %}"><img src="../../static/home/images/pencil-square.svg"
+                            class="btn-icon" alt="Icon of a pencil in a square" width="20" height="20">Register</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-12 mt-5">
+            <h1>Search Results</h1>
+        </div>
+        <div class="col-12">
+            <form class="ms-lg-3 d-inline d-lg-none" id="search-small">
+                <div class="form-group">
+                    <input type="text" name="friend-q-small" id="friend-q-small" placeholder="Search for friends" class="form-control">
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        {% if accounts %}
+            <div class="col-12">
+                {% for account in accounts %}
+                    <div class="row mt-3 base-card">
+                        <div class="col-12">
+                            <p class="fw-bolder fs-5">{{account.0.username}}</p>
+                        </div>
+                        <div class="col-12 col-lg-6">
+                            <p class="text-gray fw-bold">{{account.0.first_name}} {{account.0.last_name}}</p>
+                        </div>
+                        <div class="col-12 col-lg-6 d-flex justify-content-end">
+                            <a class="btn btn-primary">Add Friend</a>
+                            <a class="btn btn-secondary ms-3">View Profile</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+        <div class="col-12">
+            <div>
+                <h2 class="text-secondary">No results found.</h2>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+{% block postloadjs %}
+    <script>
+        // For large screens
+        const friendSearchFormLarge = document.getElementById("search-large");
+        const friendSearchInputLarge = document.getElementById("friend-q-large");
+        // For small screens
+        const friendSearchFormSmall = document.getElementById("search-small");
+        const friendSearchInputSmall = document.getElementById("friend-q-small");
+
+        // Add Event Listeners
+        friendSearchFormLarge.addEventListener("submit", onFriendSearchSubmit);
+        friendSearchFormSmall.addEventListener("submit", onFriendSearchSubmit);
+
+        // Event Listener func.
+        function onFriendSearchSubmit(event) {
+            event.preventDefault();
+            let query = friendSearchInputLarge.value;
+            // Change query input value if empty for large.
+            if (query === "") {
+                query = friendSearchInputSmall.value;
+            }
+
+            window.location.replace("{% url 'search'%}?q=" + query);
+        }
+    </script>
+{% endblock %}
