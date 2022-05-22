@@ -1,0 +1,181 @@
+{% extends "members/base.html" %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'friend/css/friend.css' %}">
+{% endblock %}
+
+{% block page_header %}
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+            <!-- Nav Brand -->
+            <a class="navbar-brand" href="#"><img src="{% static 'members/img/nav-logo.svg'%}" alt=""></a>
+            <form class="ms-lg-3 d-none d-lg-inline" id="search-large">
+                <div class="form-group">
+                    <input type="text" name="friend-q-large" id="friend-q-large" placeholder="Search for friends" class="form-control">
+                </div>
+            </form>
+            <!-- Nav Burger Button -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!--NavBar Main Nav-->
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav ms-auto">
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link ms-lg-2" href="{% url 'about' %}">About Us</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url "home" %}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'about' %}">About Us</a>
+                    </li>
+                    {% endif %}
+                </ul>
+                <div class="d-flex ms-lg-2">
+                    {% if user.is_authenticated %}
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="{% static 'members/img/user.svg' %}" alt="" width="20" height="20" class="btn-icon me-1">{{ user.email }}
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                          <li><a class="dropdown-item" href="{% url 'profile' user.id %}">Profile</a></li>
+                          <li><a class="dropdown-item" href="#">Friends</a></li>
+                          <li><a class="dropdown-item" href="{% url 'profile_edit' %}">Edit Profile</a></li>
+                          <li><a class="dropdown-item" href="{% url 'logout'%}">Logout</a></li>
+                        </ul>
+                      </div>
+                    {% else %}
+                    <a class="login-btn btn btn-secondary ms-3" href="{% url 'login' %}">Login</a>
+                    <a class="register-btn btn btn-dark ms-3" href="{% url 'register' %}"><img src="../../static/home/images/pencil-square.svg"
+                            class="btn-icon" alt="Icon of a pencil in a square" width="20" height="20">Register</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+{% endblock %}
+
+
+{% block content %}
+<div class="container profile-container">
+    <div class="row">
+        <div class="col-12">
+            <p class="fs-1 mt-2">Friend Requests</p>
+        </div>
+    </div>
+</div>
+<!-- Friend Requests -->
+<div class="container">
+	<div class="row">
+        <div class="col-12 col-lg-6 me-lg-auto">
+            {% if friend_requests %}
+                {% for request in friend_requests %}
+                    <div class="card mt-3">
+                        <div class="card-body">
+                            <div class="card-title">
+                                <a href="{% url "profile" request.sender.id%}" class="text-decoration-none">{{ request.sender.first_name }} {{ request.sender.last_name }}</a>
+                            </div>
+                            <div class="card-text d-flex">
+                                <p class="mb-0 d-inline-block">
+                                    Username: {{ request.sender.username }}
+                                </p>
+                                <div class="d-inline-block ms-auto">
+                                    <button class="btn btn-success"><i class="fa-solid fa-circle-check"></i> Accept</button>
+                                    <button class="btn btn-danger"><i class="fa-solid fa-circle-xmark me-1"></i> Decline</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</div>
+<!--Footer starts here -->
+<footer class="container-fluid mt-auto">
+    <div class="footer-container row">
+        <div class="footer-col-1 col-lg-6">
+            <div class="footer-logo-container row">
+                <div class="col">
+                    <img src="../../static/home/images/fika-logo-light.svg" class="register-icon"
+                        alt="Fika logo in white" width="74" height="37">
+                </div>
+                <div class="footer-btn-container row">
+                    <div class="col">
+                        <button class="footer-btn btn btn-light"><img src="../../static/home/images/envelope.svg"
+                                class="btn-icon" alt="Icon of an envelope" width="20" height="20">Get in touch</button>
+                    </div>
+                </div>
+                <div class="social-media-container row">
+                    <div class="col">
+                        <a href="https://www.instagram.com" target="_blank"><img
+                                src="../../static/home/images/instagram.svg" class="social-icon"
+                                alt="Instagram Icon Link" width="20" height="20"></a>
+                        <a href="https://www.linkedin.com" target="_blank"> <img
+                                src="../../static/home/images/linkedin.svg" class="social-icon" alt="LinkedIn Icon Link"
+                                width="20" height="20"></a>
+                        <a href="https://www.facebook.com" target="_blank"><img
+                                src="../../static/home/images/facebook.svg" class="social-icon" alt="Facebook Icon Link"
+                                width="20" height="20"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="row">
+                <div class="col">
+                    <h3 class="footer-heading">Services</h3>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <ul class="footer-links">
+                            <li>
+                                <a href="#">Register</a>
+                            </li>
+                            <li>
+                                <a href="#">Login</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="row">
+                <div class="col">
+                    <h3 class="footer-heading">Resources</h3>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <ul class="footer-links">
+                            <li>
+                                <a href="#">About</a>
+                            </li>
+                            <li>
+                                <a href="#">Blog</a>
+                            </li>
+                            <li>
+                                <a href="#">Contact</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p> &copy; 2022 Fika Hackathon Team. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+{% endblock %}
+
+{% block postloadjs %}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+{% endblock %}
