@@ -73,3 +73,30 @@ def friend_requests_view(request, *args, **kwargs):
 	else:
 		redirect("login")
 	return render(request, "friend/friend_requests.html", context)
+
+
+@login_required(login_url="/members/login")
+def accept_friend_request(request, *args, **kwargs):
+	user = request.user
+	payload = {}
+	if request.method == "GET" and user.is_authenticated:
+		friend_request_id = kwargs.get("friend_request_id")
+		if friend_request_id:
+			friend_request = FriendRequest.objects.get(id=friend_request_id)
+			# confirm that is the correct request
+			if friend_request.receiver == user:
+				if friend_request: 
+					# found the request. Now accept it
+					updated_notification = friend_request.accept()
+					payload['response'] = "Friend request accepted."
+
+				else:
+					payload['response'] = "Something went wrong."
+			else:
+				payload['response'] = "That is not your request to accept."
+		else:
+			payload['response'] = "Unable to accept that friend request."
+	else:
+		# should never happen
+		payload['response'] = "You must be authenticated to accept a friend request."
+	return HttpResponse(json.dumps(payload), content_type="application/json")
