@@ -37,7 +37,7 @@ if "DEVELOPMENT" in os.environ:
 else:
     DEBUG = False
 
-ALLOWED_HOSTS = ["https://fika-platform.herokuapp.com/", "localhost"]
+ALLOWED_HOSTS = ["https://fika-platform.herokuapp.com/", "*"]
 
 
 # Application definition
@@ -95,7 +95,7 @@ WSGI_APPLICATION = 'fika.wsgi.application'
 
 if 'DATABASE_URL' in os.environ:
     DATABASES = {
-        'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+        'default': dj_database_url.parse(os.environ.get('DATABASE_URL'), conn_max_age=600)
     }
 else:
     DATABASES = {
