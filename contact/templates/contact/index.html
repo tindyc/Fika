@@ -55,20 +55,21 @@
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">Home</a>
+                        <a class="nav-link" href="{% url 'home' %}">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Blog</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">About Us</a>
+                        <a class="nav-link" href="{% url 'about' %}">About Us</a>
                     </li>
                 </ul>
                 <div class="d-flex">
-                    <button class="login-btn btn btn-light ms-3">Login</button>
-                    <button class="register-btn btn btn-dark ms-3"><img
-                            src="../../static/contact/images/pencil-square.svg" class="btn-icon"
-                            alt="Icon of a pencil in a square" width="20" height="20">Register</button>
+                    <a href="{% url 'login' %}" class="login-btn btn btn-light ms-3">Login</a>
+
+                    <a href="{% url 'register' %}" class="register-btn btn btn-dark ms-3"><img
+                            src="../../static/home/images/pencil-square.svg" class="btn-icon"
+                            alt="Icon of a pencil in a square" width="20" height="20">Register</a>
                 </div>
             </div>
         </div>
@@ -120,8 +121,8 @@
                 </div>
                 <div class="footer-btn-container row">
                     <div class="col">
-                        <button class="footer-btn btn btn-light"><img src="../../static/home/images/envelope.svg"
-                                class="btn-icon" alt="Icon of an envelope" width="20" height="20">Get in touch</button>
+                        <a href="{% url 'contact' %}" class="footer-btn btn btn-light"><img src="../../static/home/images/envelope.svg"
+                            class="btn-icon" alt="Icon of an envelope" width="20" height="20">Get in touch</a>
                     </div>
                 </div>
                 <div class="social-media-container row">
@@ -148,10 +149,10 @@
                     <div class="col">
                         <ul class="footer-links">
                             <li>
-                                <a href="#">Register</a>
+                                <a href="{% url 'register' %}">Register</a>
                             </li>
                             <li>
-                                <a href="#">Login</a>
+                                <a href="{% url 'login' %}">Login</a>
                             </li>
                         </ul>
                     </div>
@@ -167,13 +168,13 @@
                     <div class="col">
                         <ul class="footer-links">
                             <li>
-                                <a href="#">About</a>
+                                <a href="{% url 'about' %}">About</a>
                             </li>
                             <li>
                                 <a href="#">Blog</a>
                             </li>
                             <li>
-                                <a href="#">Contact</a>
+                                <a href="{% url 'contact' %}">Contact</a>
                             </li>
                         </ul>
                     </div>
