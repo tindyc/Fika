@@ -13,6 +13,9 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from pathlib import Path
 import os
 
+if os.path.exists("env.py"):
+    import env
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -21,12 +24,19 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-+#x6p&pbdn649ak5mrp3ae8il9+2g2)d&4$cyoo9viots&ce9m'
+if "SECRET_KEY" in os.environ:
+    DEBUG = os.environ.get("SECRET_KEY")
+else:
+    SECRET_KEY = 'django-insecure-+#x6p&pbdn649ak5mrp3ae8il9+2g2)d&4$cyoo9viots&ce9m'
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+if "DEVELOPMENT" in os.environ:
+    DEBUG = False
+else:
+    DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -42,6 +52,7 @@ INSTALLED_APPS = [
     'members',
     'contact',
     'friend',
+    'event',
 ]
 
 MIDDLEWARE = [
@@ -140,3 +151,5 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 BASE_URL = "http://localhost:8000/"
+
+GOOGLE_API_KEY = os.environ.get("GOOGLE_API_KEY")
