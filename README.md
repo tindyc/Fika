@@ -211,6 +211,8 @@ The Profile page is the page the user is taken to when first registered or logge
 
 The contact page has a contact form in which the user can contact the dev team from. The contact page can be reached from the footer.
 
+![Contact page desktop view](./docs/images/fika-contact-pg-desktop.png)
+
 ## Footer
 
 The footer contains the Fika logo which redirects the user to the home page when pressed. It also contains links to take the user directly to the Home page, Blog page, About page, Login page and Register page when the user isn't signed in.
