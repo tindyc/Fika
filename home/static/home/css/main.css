@@ -40,6 +40,14 @@ h1 span {
     transition: background-color 0.4s ease-in-out;
 }
 
+a.nav-link.active {
+    color: #040921;
+}
+
+a.nav-link.active:hover {
+    color: #fff;
+}
+
 .nav-item a:hover {
     color: #ffffff;
 }

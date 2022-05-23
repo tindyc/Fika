@@ -89,8 +89,8 @@
             Sign up now to get connected with friends and get planning! Go for coffee, plan a night out
             or schedule a gym session.
         </p>
-        <button class="register-btn btn btn-dark"><img src="../../static/home/images/pencil-square.svg" class="btn-icon"
-                alt="Icon of a pencil in a square" width="20" height="20">Register Today</button>
+        <a href="{% url 'register' %}" class="register-btn btn btn-dark"><img src="../../static/home/images/pencil-square.svg" class="btn-icon"
+                alt="Icon of a pencil in a square" width="20" height="20">Register Today</a>
     </div>
 </section>
 
@@ -152,9 +152,9 @@
                     making
                     time
                     for friends and colleagues</p>
-                <button class="get-started-btn btn btn-light"><img src="../../static/home/images/pencil-square.svg"
+                <a href="{% url 'register' %}" class="get-started-btn btn btn-light"><img src="../../static/home/images/pencil-square.svg"
                         class="btn-icon" alt="Icon of a pencil in a square" width="20" height="20">Get Started For
-                    Free</button>
+                    Free</a>
             </div>
 
             <div class="col-lg-2 people-image-right">
@@ -176,8 +176,8 @@
                 </div>
                 <div class="footer-btn-container row">
                     <div class="col">
-                        <button class="footer-btn btn btn-light"><img src="../../static/home/images/envelope.svg"
-                                class="btn-icon" alt="Icon of an envelope" width="20" height="20">Get in touch</button>
+                        <a href="{% url 'contact' %}" class="footer-btn btn btn-light"><img src="../../static/home/images/envelope.svg"
+                                class="btn-icon" alt="Icon of an envelope" width="20" height="20">Get in touch</a>
                     </div>
                 </div>
                 <div class="social-media-container row">
