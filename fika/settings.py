@@ -33,9 +33,9 @@ else:
 
 # SECURITY WARNING: don't run with debug turned on in production!
 if "DEVELOPMENT" in os.environ:
-    DEBUG = False
-else:
     DEBUG = True
+else:
+    DEBUG = False
 
 ALLOWED_HOSTS = ["https://fika-platform.herokuapp.com/,", "localhost"]
 
