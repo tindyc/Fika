@@ -25,6 +25,7 @@ urlpatterns = [
     path("members/", include("members.urls")),
     path("contact/", include("contact.urls")),
     path("friend/", include("friend.urls")),
+    path("event/", include("event.urls")),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 handler404 = "home.views.page_not_found_view"
