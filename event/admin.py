@@ -3,9 +3,9 @@ from event.models import EventPost
 # Register your models here.
 
 class EventPostAdmin(admin.ModelAdmin):
-    list_filter = ["author"]
-    list_display = ["author"]
-    search_fields = ["author"]
+    list_filter = ["user"]
+    list_display = ["user"]
+    search_fields = ["user"]
 
     class Meta:
         model = EventPost

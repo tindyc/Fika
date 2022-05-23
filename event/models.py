@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 class EventPost(models.Model):
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     participants = models.ManyToManyField(User, blank=True, related_name="participants")
 
     title = models.CharField(max_length=75)
