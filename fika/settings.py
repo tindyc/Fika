@@ -37,7 +37,7 @@ if "DEVELOPMENT" in os.environ:
 else:
     DEBUG = True
 
-ALLOWED_HOSTS = ["https://fika-platform.herokuapp.com/," "localhost"]
+ALLOWED_HOSTS = ["https://fika-platform.herokuapp.com/,", "localhost"]
 
 
 # Application definition
