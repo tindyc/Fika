@@ -121,3 +121,32 @@ def remove_friend(request):
 	else:
 		payload['response'] = "You must be authenticated to remove a friend."
 	return HttpResponse(json.dumps(payload), content_type="application/json")
+
+@login_required(login_url="/members/login")
+def cancel_friend_request(request, *args, **kwargs):
+	user = request.user
+	payload = {}
+	if request.method == "POST" and user.is_authenticated:
+		user_id = request.POST.get("receiver_user_id")
+		if user_id:
+			receiver = User.objects.get(id=user_id)
+			try:
+				friend_requests = FriendRequest.objects.filter(sender=user, receiver=receiver, is_active=True)
+			except FriendRequest.DoesNotExist:
+				payload['response'] = "Oops... Friend request does not exist."
+
+			# Cancel all friend requests just in case there are copies of the same instances.
+			if len(friend_requests) > 1:
+				for request in friend_requests:
+					request.cancel()
+				payload['response'] = "Friend request canceled."
+			else:
+				# found the request. Now cancel it
+				friend_requests.first().cancel()
+				payload['response'] = "Friend request canceled."
+		else:
+			payload['response'] = "Unable to cancel friend request."
+	else:
+		# should never happen
+		payload['response'] = "You must be authenticated to cancel a friend request."
+	return HttpResponse(json.dumps(payload), content_type="application/json")
