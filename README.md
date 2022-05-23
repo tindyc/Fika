@@ -13,7 +13,6 @@ We want to encourage you to nurture the relationships you already have through r
 * [User Experience UX](<#user-experience-ux>)
     * [Target Audience](<#target-audience>)
     * [User Stories](<#user-stories>)
-    * [Site Aims](<#site-aims>)
 * [Design](<#design>)
     * [Site Structure](<#site-structure>)
     * [Colour Scheme](<#colour-scheme>)
@@ -39,7 +38,7 @@ We want to encourage you to nurture the relationships you already have through r
 # Objective:
 
 
-In the Swedish culture, the word fika encompasses many meanings. It has been described as, a concept, a state of mind, and, an attitude. It is the act of consciously taking time in your day to meet with friends or colleagues to share a beverage and have something to eat. Fika has become a daily practive in Sweden, so much so that businesses have adpoted this into their daily running. 
+In the Swedish culture, the word fika encompasses many meanings. It has been described as, a concept, a state of mind, and, an attitude. It is the act of consciously taking time in your day to meet with friends or colleagues to share a beverage and have something to eat. Fika has become a daily practice in Sweden, so much so that businesses have adopted this into their daily running. 
 
 In today’s busy world, time slips away before we realise it. It’s easy to get caught up and miss out on spending time with friends and family. By using our platform, we hope it will help users stay connected with their friends and family by encouraging them to make time for themself and those valuable experiences with others. 
 
@@ -91,7 +90,7 @@ Fika consists of a 5 page website that the user can navigate between via the nav
 
 ![Colour-scheme](./docs/images/color-scheme.png)
 
-The colour scheme used for this project was generated on [filler](https://filler.com).
+The colour scheme used for this project was generated on [Coolors](https://coolors.co/).
 
 * Xiketic `#040921`
 * Maximum Blue `#5EBEDD`
@@ -104,11 +103,16 @@ We have chosen the font **Alfa Slab One** for the headings on each page.
 The font **Roboto Slab** has been chosen for all the content of the project.
 The fonts were sourced from [Google Fonts](https://fonts.google.com/).
 
-## Wireframes
+### Imagery
+Hand with clock image on about page - Photo by Elena Koycheva on [Unsplash](https://unsplash.com/photos/VmcIMhuWCac)
+
+Friends in cafe with laptops image on about page - Photo by Brooke Cagle on [Unsplash](https://unsplash.com/photos/g1Kr4Ozfoac)
+
+### Wireframes
 
 <details><summary>High Fidelity Home Page Wireframes </summary>
 
-![Home Page Wireframe](docs/images/home.png)
+![Home Page Wireframe](./docs/images/home.png)
 
 ![Home Page Mobile Wireframe](./docs/images/home-mobile.png)
 
@@ -116,9 +120,9 @@ The fonts were sourced from [Google Fonts](https://fonts.google.com/).
 
 <details><summary>High Fidelity About Page Wireframes </summary>
 
-![About Page Wireframe](docs/images/about.png)
+![About Page Wireframe](./docs/images/about.png)
 
-![About Page Mobile Wireframe](docs/images/about-mobile.png)
+![About Page Mobile Wireframe](./docs/images/about-mobile.png)
 
 </details>
 
@@ -128,7 +132,7 @@ The fonts were sourced from [Google Fonts](https://fonts.google.com/).
 
 Fika is designed and structured like a typical website, making it very natural and intuitive to use to entice the user to register with call to actions and text.
 
-Each page has a clear designg structure. The language, colour and design used is intended to be friendly and easy to understand.
+Each page has a clear design structure. The language, colour and design used is intended to be friendly and easy to understand.
 
 This is a mobile first, fully responsive website. 
 
@@ -140,9 +144,9 @@ The Navigation bar can take the user directly to the Home page, Blog page, About
 
 Once the user has signed in, the Navigation bar can take the user directly to the Home page, Blog page, About page, and their Profile page. The Log out function is also located on the Navigation bar when the user is logged in.
 
-![Desktop navbar](docs/images/fika-navbar-desktop.png)
+![Desktop navbar](./docs/images/fika-navbar-desktop.png)
 
-![Responsive navbar](docs/images/fika-navbar-responsive-desktop.png)
+![Responsive navbar](./docs/images/fika-navbar-responsive-desktop.png)
 
 ## Home Page 
 
@@ -156,7 +160,7 @@ No matter what part of the page you are on there is a call to action button so t
 
 Each section is fully responsive, with the multiple column content naturally falling into single column content.
 
-![Home page desktop view](docs/images/fika-landing-pg-desktop.png)
+![Home page desktop view](./docs/images/fika-landing-pg-desktop.png)
 
 ## About Page
 
@@ -164,22 +168,22 @@ The About page is accessible from both the Navbar and Footer of the site.
 
 Again, the design and imagery is consistent throughout the pages, as we have the same design as the Home Page, with a large Hero section with our main heading text on top.
 
-This heading text gives a succint summary of what the word Fika is,m and it is designed to grab the users attention and of course scroll below the screen fold.
+This heading text gives a succinct summary of what the word Fika is, and it is designed to grab the users attention and of course scroll below the screen fold.
 
 The second section of the About page is more detailed information on What Fika is, where the word comes from and how it correlates with our website.
 These are short informative paragraphs.
 
 The last section is a 'Meet the Developers' section, with our ethos as well as our profile picture and title. Seeing the developers adds a bit of humanity and relatability to our website, as well as creating a virtual connection to our users. A face to a product/service as such.
 
-![About page desktop view](docs/images/fika-about-pg-desktop.png)
+![About page desktop view](./docs/images/fika-about-pg-desktop.png)
 
 ## Login Page
 
-This page logs the user into their account. The page provides users with a usernme and password input where they must input their username and password correctly to access their account. 
+This page logs the user into their account. The page provides users with a username and password input where they must input their username and password correctly to access their account. 
 
 This page again follows the same design structure as all pages on the site.
 
-![Login page desktop view](docs/images/fika-login-pg-desktop.png)
+![Login page desktop view](./docs/images/fika-login-pg-desktop.png)
 
 ## Register Page
 
@@ -193,11 +197,11 @@ The user must enter a username, Full name, email and password. Each of the input
 
 This page again follows the same design structure as all pages on the site.
 
-![Register page desktop view](docs/images/fika-register-pg-desktop.png)
+![Register page desktop view](./docs/images/fika-register-pg-desktop.png)
 
-![Register page desktop view blank input validation](docs/images/fika-register-validate-input-desktop.png)
+![Register page desktop view blank input validation](./docs/images/fika-register-validate-input-desktop.png)
 
-![Register page desktop view not an email input validation](docs/images/fika-register-validate-input-desktop2.png)
+![Register page desktop view not an email input validation](./docs/images/fika-register-validate-input-desktop2.png)
 
 ## Profile Page
 
@@ -205,7 +209,7 @@ The Profile page is the page the user is taken to when first registered or logge
 
 ## Contact Page
 
-The contact page has a contact form in which the user can contact team from. The contact page can be reached from the footer.
+The contact page has a contact form in which the user can contact the dev team from. The contact page can be reached from the footer.
 
 ## Footer
 
@@ -213,9 +217,9 @@ The footer contains the Fika logo which redirects the user to the home page when
 
 When the user is signed in, the footer will also contain link to take the user directly to the Events page, Add Event page, Connections page and their Profile page.
 
-The footer also contains a "Get in Touch" button which will allow the user to email Fika. There are 3 social media icons that will take the user to Fika's Instagram,  Linkedin, and Facebook page when pressed.
+The footer also contains a "Get in Touch" button which will allow the user to email Fika. There are 3 social media icons that will take the user to Fika's Instagram, LinkedIn, and Facebook page when pressed.
 
-![Footer desktop view](docs/images/fika-footer-desktop.png)
+![Footer desktop view](./docs/images/fika-footer-desktop.png)
 
 ## Create Events
 
@@ -229,7 +233,7 @@ The user can give the event a name and a time and date as well as a destination.
 
 The idea of our platform is to connect you to friends and family, people you know, and like to spend time with. 
 
-Therefore there is a friend system implemented whereby your events will only be seen by your friends and you will only see friends events.
+Therefore, there is a friend system implemented whereby your events will only be seen by your friends and you will only see friends events.
 
 You can search profiles for your family or friends and add them. You can decline friend requests and unfriend people. 
 
