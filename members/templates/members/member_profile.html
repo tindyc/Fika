@@ -97,14 +97,14 @@
                 <p class="text-secondary fs-5">Name: <br><span class="fs-6 text-dark fw-bold ms-1">{{ account.first_name }} {{ account.last_name }}</span></p>
                 <a href="{% url 'profile_edit'%}" class="btn btn-primary fw-bold">Friends: {{ friends|length }}</a>
                 {% if is_friend %}
-                    <button href="#" class="btn btn-danger fw-bold" id="remove-friend-btn">Unfriend</button>
+                    <button class="btn btn-danger fw-bold" id="remove-friend-btn">Unfriend</button>
                 {% elif request_sent == 0%}
                     <div class="d-block mt-3">
                         <a href="#" class="btn btn-success fw-bold">Accept Friend Request</a>
                         <a href="#" class="btn btn-danger fw-bold">Decline Friend Request</a>
                     </div>
                 {% elif request_sent == 1 %}
-                    <a href="#" class="btn btn-danger fw-bold">Cancel Friend Request</a>
+                    <button class="btn btn-danger fw-bold" id="cancel-friend-request">Cancel Friend Request</button>
                 {% elif request_sent == -1 %}
                     <button href="" class="btn btn-success fw-bold" id="send-friend-request-btn">Add Friend</button>
                 {% endif %}
@@ -263,7 +263,17 @@
                 removeFriend("{{user_id}}", updateUi);
             });
         }
+
+        
+        const cancelFriendRequestBtn = document.getElementById("cancel-friend-request");
+        if (cancelFriendRequestBtn != null) {
+            cancelFriendRequestBtn.addEventListener("click", function(){
+                cancelFriendRequest("{{user_id}}", updateUi);
+            });
+        }
+
     </script>
     {% include "members/snippets/remove_friend.html" %}
+    {% include "members/snippets/cancel_friend_request.html"%}
     {% include "members/snippets/send_friend_request.html" %}
 {% endblock %}
