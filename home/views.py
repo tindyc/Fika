@@ -1,10 +1,13 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 # Create your views here.
 
 
 def index(request):
     """ A view to return the index page """
+    if request.user.is_authenticated:
+        return redirect("profile", user_id=request.user.id)
+    
     return render(request, 'home/index.html', {})
 
 
