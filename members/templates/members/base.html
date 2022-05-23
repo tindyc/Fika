@@ -1,6 +1,6 @@
 {%load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-100">
   <head>
     <!-- Main Meta -->
     {% block meta %}
@@ -18,12 +18,14 @@
       integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
       crossorigin="anonymous"
     />
-    <script src="https://kit.fontawesome.com/5b031962f6.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="{% static 'members/css/base.css' %}">
     {% endblock %}
     <!-- Extra CSS-->
     {% block extra_css %} {% endblock %}
+    <script src="https://kit.fontawesome.com/5b031962f6.js" crossorigin="anonymous"></script>
   </head>
-  <body>
+  <body class="d-flex flex-column body-container">
     <!-- Page Header -->
     {% block page_header %} {% endblock %}
 

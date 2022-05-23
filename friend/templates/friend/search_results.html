@@ -2,13 +2,13 @@
 {% load static %}
 
 {% block extra_css %}
-    <link rel="stylesheet" href="{% static 'members/css/members.css' %}">
+    <link rel="stylesheet" href="{% static 'friend/css/friend.css' %}">
 {% endblock %}
 
 {% block page_header %}
 <header>
     <nav class="navbar navbar-expand-lg navbar-light">
-        <div class="container">
+        <div class="container mb-5">
             <!-- Nav Brand -->
             <a class="navbar-brand" href="#"><img src="{% static 'members/img/nav-logo.svg'%}" alt=""></a>
             <form class="ms-lg-3 d-none d-lg-inline" id="search-large">
@@ -62,12 +62,13 @@
 </header>
 {% endblock %}
 
-
 {% block content %}
-<div class="container profile-container">
-    <div class="row d-flex d-lg-none">
+<div class="container">
+    <div class="row">
+        <div class="col-12 mt-5">
+            <h1>Search Results</h1>
+        </div>
         <div class="col-12">
-            <p class="fs-1 mt-2">Friend Search</p>
             <form class="ms-lg-3 d-inline d-lg-none" id="search-small">
                 <div class="form-group">
                     <input type="text" name="friend-q-small" id="friend-q-small" placeholder="Search for friends" class="form-control">
@@ -76,70 +77,35 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-12 col-lg-4 mt-5 border-lg-end">
-            <h1 class="d-block mb-4">Profile Details</h1>
-            {% if user.id == account.id or not account %}
-                <p class="text-secondary fs-5">Username: <br><span class="fs-6 text-dark fw-bold ms-1">{{ user }}</span></p>
-                <p class="text-secondary fs-5">Email: <br><span class="fs-6 text-dark fw-bold ms-1">{{ user.email }}</span></p>
-                <p class="text-secondary fs-5">Name: <br><span class="fs-6 text-dark fw-bold ms-1">{{ user.first_name }} {{ user.last_name }}</span></p>
-                <a href="{% url 'profile_edit'%}" class="btn btn-primary fw-bold">Edit Profile</a>
-                <a href="{% url 'friends-list' user_id %}" class="btn btn-primary fw-bold">Friends: {{ friends|length }}</a>
-                {% if friend_request%}
-                <div class="d-block mt-3">
-                    <a href="{% url 'friend-requests' user.id%}" class="btn btn-primary fw-bold">
-                        Friend Request ({{friend_request|length}}) 
-                    </a>
-                </div>
-                {% endif %}
-            {% else %}
-                <p class="text-secondary fs-5">Username: <br><span class="fs-6 text-dark fw-bold ms-1">{{ account }}</span></p>
-                <p class="text-secondary fs-5">Email: <br><span class="fs-6 text-dark fw-bold ms-1">{{ account.email }}</span></p>
-                <p class="text-secondary fs-5">Name: <br><span class="fs-6 text-dark fw-bold ms-1">{{ account.first_name }} {{ account.last_name }}</span></p>
-                <a href="{% url 'friends-list' user_id %}" class="btn btn-primary fw-bold">Friends: {{ friends|length }}</a>
-                {% if is_friend %}
-                    <button class="btn btn-danger fw-bold" id="remove-friend-btn">Unfriend</button>
-                {% elif request_sent == 0%}
-                    <div class="d-block mt-3">
-                        <a href="#" class="btn btn-success fw-bold">Accept Friend Request</a>
-                        <a href="#" class="btn btn-danger fw-bold">Decline Friend Request</a>
-                    </div>
-                {% elif request_sent == 1 %}
-                    <button class="btn btn-danger fw-bold" id="cancel-friend-request">Cancel Friend Request</button>
-                {% elif request_sent == -1 %}
-                    <button href="" class="btn btn-success fw-bold" id="send-friend-request-btn">Add Friend</button>
-                {% endif %}
-            {% endif %}
-        </div>
-        <div class="col-12 col-lg-8">
-            <div class="row">
-                <div class="col-12 mt-5 ms-lg-3">
-                    <h2 class="mb-3">Events Board</h2>
-                </div>
-                <div class="col-12 col-lg-6 mb-3 me-auto">
-                    <form action="" class="ms-lg-3">
-                        <div class="form-group">
-                            <label for="eventsearch">Search for Event</label>
-                            <input type="text" name="eventsearch" id="eventsearch"class="form-control">
+        {% if accounts %}
+            <div class="col-12 col-lg-6 ms-lg-3 me-lg-auto">
+                {% for account in accounts %}
+                    <div class="card mt-3">
+                        <div class="card-body">
+                            <div class="card-title">
+                                <p class="fw-bolder fs-5">{{account.0.first_name}} {{account.0.last_name}}</p>
+                            </div>
+                            <div class="card-text d-flex">
+                                <p class="mb-0 d-inline-block">
+                                    Username: {{account.0.username}}
+                                </p>
+                                <div class="d-inline-block ms-auto">
+                                    <a class="btn btn-secondary ms-3" href="{% url 'profile' account.0.id %}">View Profile</a>
+                                </div>
+                            </div>
                         </div>
-                    </form>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12 border rounded py-3 mx-lg-4 ">
-                    <p class="fw-bold">Event Title</p>
-                    <p class="small">Event Descrption</p>
-                    <p class="small">Event Location</p>
-                    <div class="d-inline">
-                        <p class="d-inline-block">Join this event</p>
-                        <a href="" class="btn btn-success fw-bold">Yes</a>
-                        <a href="" class="btn btn-primary fw-bold">View Event</a>
                     </div>
-                </div>
+                {% endfor %}
+            </div>
+        {% else %}
+        <div class="col-12">
+            <div>
+                <h2 class="text-secondary">No results found.</h2>
             </div>
         </div>
+        {% endif %}
     </div>
 </div>
-
 <!--Footer starts here -->
 <footer class="container-fluid mt-auto">
     <div class="footer-container row">
@@ -219,7 +185,6 @@
 {% endblock %}
 
 {% block postloadjs %}
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script>
         // For large screens
         const friendSearchFormLarge = document.getElementById("search-large");
@@ -241,39 +206,7 @@
                 query = friendSearchInputSmall.value;
             }
 
-            window.location.replace("{% url 'search' %}?q=" + query);
+            window.location.replace("{% url 'search'%}?q=" + query);
         }
-
-        function updateUi(){
-            location.reload();
-        }
-
-        const sendFriendRequestBtn = document.getElementById("send-friend-request-btn");
-        if (sendFriendRequestBtn != null ){
-
-            sendFriendRequestBtn.addEventListener("click", function(){
-                sendFriendRequest("{{user_id}}", updateUi);
-            });
-        }
-
-
-        const removeFriendBtn = document.getElementById("remove-friend-btn");
-        if (removeFriendBtn != null){
-            removeFriendBtn.addEventListener("click", function(){
-                removeFriend("{{user_id}}", updateUi);
-            });
-        }
-
-        
-        const cancelFriendRequestBtn = document.getElementById("cancel-friend-request");
-        if (cancelFriendRequestBtn != null) {
-            cancelFriendRequestBtn.addEventListener("click", function(){
-                cancelFriendRequest("{{user_id}}", updateUi);
-            });
-        }
-
     </script>
-    {% include "members/snippets/remove_friend.html" %}
-    {% include "members/snippets/cancel_friend_request.html"%}
-    {% include "members/snippets/send_friend_request.html" %}
 {% endblock %}
