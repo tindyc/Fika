@@ -18,12 +18,14 @@
       integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
       crossorigin="anonymous"
     />
+
+    <link rel="stylesheet" href="{% static 'members/css/base.css' %}">
     {% endblock %}
     <!-- Extra CSS-->
     {% block extra_css %} {% endblock %}
     <script src="https://kit.fontawesome.com/5b031962f6.js" crossorigin="anonymous"></script>
   </head>
-  <body class="d-flex flex-column h-100">
+  <body class="d-flex flex-column body-container">
     <!-- Page Header -->
     {% block page_header %} {% endblock %}
 

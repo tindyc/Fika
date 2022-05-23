@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "members/base.html" %}
 {% load static %}
 
 {% block extra_css %}
@@ -8,7 +8,7 @@
 {% block page_header %}
 <header>
     <nav class="navbar navbar-expand-lg navbar-light">
-        <div class="container">
+        <div class="container mb-5">
             <!-- Nav Brand -->
             <a class="navbar-brand" href="#"><img src="{% static 'members/img/nav-logo.svg'%}" alt=""></a>
             <form class="ms-lg-3 d-none d-lg-inline" id="search-large">
@@ -106,6 +106,82 @@
         {% endif %}
     </div>
 </div>
+<!--Footer starts here -->
+<footer class="container-fluid mt-auto">
+    <div class="footer-container row">
+        <div class="footer-col-1 col-lg-6">
+            <div class="footer-logo-container row">
+                <div class="col">
+                    <img src="../../static/home/images/fika-logo-light.svg" class="register-icon"
+                        alt="Fika logo in white" width="74" height="37">
+                </div>
+                <div class="footer-btn-container row">
+                    <div class="col">
+                        <button class="footer-btn btn btn-light"><img src="../../static/home/images/envelope.svg"
+                                class="btn-icon" alt="Icon of an envelope" width="20" height="20">Get in touch</button>
+                    </div>
+                </div>
+                <div class="social-media-container row">
+                    <div class="col">
+                        <a href="https://www.instagram.com" target="_blank"><img
+                                src="../../static/home/images/instagram.svg" class="social-icon"
+                                alt="Instagram Icon Link" width="20" height="20"></a>
+                        <a href="https://www.linkedin.com" target="_blank"> <img
+                                src="../../static/home/images/linkedin.svg" class="social-icon" alt="LinkedIn Icon Link"
+                                width="20" height="20"></a>
+                        <a href="https://www.facebook.com" target="_blank"><img
+                                src="../../static/home/images/facebook.svg" class="social-icon" alt="Facebook Icon Link"
+                                width="20" height="20"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="row">
+                <div class="col">
+                    <h3 class="footer-heading">Services</h3>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <ul class="footer-links">
+                            <li>
+                                <a href="#">Register</a>
+                            </li>
+                            <li>
+                                <a href="#">Login</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="row">
+                <div class="col">
+                    <h3 class="footer-heading">Resources</h3>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <ul class="footer-links">
+                            <li>
+                                <a href="#">About</a>
+                            </li>
+                            <li>
+                                <a href="#">Blog</a>
+                            </li>
+                            <li>
+                                <a href="#">Contact</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p> &copy; 2022 Fika Hackathon Team. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
 {% endblock %}
 
 {% block postloadjs %}
