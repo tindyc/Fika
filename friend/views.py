@@ -123,7 +123,7 @@ def remove_friend(request):
 	return HttpResponse(json.dumps(payload), content_type="application/json")
 
 @login_required(login_url="/members/login")
-def cancel_friend_request(request, *args, **kwargs):
+def cancel_friend_request(request):
 	user = request.user
 	payload = {}
 	if request.method == "POST" and user.is_authenticated:
@@ -141,7 +141,7 @@ def cancel_friend_request(request, *args, **kwargs):
 					request.cancel()
 				payload['response'] = "Friend request canceled."
 			else:
-				# found the request. Now cancel it
+				# Find the request and cancel it
 				friend_requests.first().cancel()
 				payload['response'] = "Friend request canceled."
 		else:
@@ -149,4 +149,27 @@ def cancel_friend_request(request, *args, **kwargs):
 	else:
 		# should never happen
 		payload['response'] = "You must be authenticated to cancel a friend request."
+	return HttpResponse(json.dumps(payload), content_type="application/json")
+
+
+@login_required
+def decline_friend_request(request, *args, **kwargs):
+	user = request.user
+	payload = {}
+	if request.method == "GET" and user.is_authenticated:
+		friend_request_id = kwargs.get("friend_request_id")
+		if friend_request_id:
+			friend_request = FriendRequest.objects.get(id=friend_request_id)
+			if friend_request.receiver == user:
+				if friend_request: 
+					updated_notification = friend_request.decline()
+					payload['response'] = "Friend request declined."
+				else:
+					payload['response'] = "Something went wrong."
+			else:
+				payload['response'] = "That is not your friend request to decline."
+		else:
+			payload['response'] = "Unable to decline that friend request."
+	else:
+		payload['response'] = "You must be authenticated to decline a friend request."
 	return HttpResponse(json.dumps(payload), content_type="application/json")
