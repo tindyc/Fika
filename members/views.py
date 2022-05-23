@@ -25,7 +25,7 @@ def member_login(request):
         if user is not None:
             login(request, user)
             # Redirect to a success page.
-            return redirect("home")
+            return redirect("profile", user_id=request.user.id)
         else:
             # Return an 'invalid login' error message.
             messages.warning(
@@ -145,7 +145,7 @@ def member_edit(request):
         if user_form.is_valid():
             user_form.save()
             messages.success(request, "Your profile is updated successfully!")
-            return redirect("profile")
+            return redirect("profile", user_id=request.user.id)
     else:
         user_form = UpdateUserForm(instance=request.user)
 
