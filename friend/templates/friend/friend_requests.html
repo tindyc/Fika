@@ -45,7 +45,7 @@
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                           <li><a class="dropdown-item" href="{% url 'profile' user.id %}">Profile</a></li>
-                          <li><a class="dropdown-item" href="#">Friends</a></li>
+                          <li><a class="dropdown-item" href="{% url 'friends-list' user.id%}">Friends</a></li>
                           <li><a class="dropdown-item" href="{% url 'profile_edit' %}">Edit Profile</a></li>
                           <li><a class="dropdown-item" href="{% url 'logout'%}">Logout</a></li>
                         </ul>

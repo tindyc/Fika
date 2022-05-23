@@ -152,7 +152,7 @@ def cancel_friend_request(request):
 	return HttpResponse(json.dumps(payload), content_type="application/json")
 
 
-@login_required
+@login_required(login_url="/members/login")
 def decline_friend_request(request, *args, **kwargs):
 	user = request.user
 	payload = {}
@@ -173,3 +173,36 @@ def decline_friend_request(request, *args, **kwargs):
 	else:
 		payload['response'] = "You must be authenticated to decline a friend request."
 	return HttpResponse(json.dumps(payload), content_type="application/json")
+
+
+@login_required(login_url="/members/login")
+def friends_list_view(request, *args, **kwargs):
+	context = {}
+	user = request.user
+	if user.is_authenticated:
+		user_id = kwargs.get("user_id")
+		if user_id:
+			try:
+				this_user = User.objects.get(pk=user_id)
+				context['this_user'] = this_user
+			except User.DoesNotExist:
+				return HttpResponse("That user does not exist.")
+			try:
+				friend_list = FriendList.objects.get(user=this_user)
+			except FriendList.DoesNotExist:
+				return HttpResponse(f"Could not find a friends list for {this_user.username}")
+			
+			# Must be friends to view a friends list
+			if user != this_user:
+				if not user in friend_list.friends.all():
+					return HttpResponse("You must be friends to view their friends list.")
+
+			friends = [] # [(friend1, True), (friend2, False), ...]
+			# get the authenticated users friend list
+			auth_user_friend_list = FriendList.objects.get(user=user)
+			for friend in friend_list.friends.all():
+				friends.append((friend, auth_user_friend_list.is_mutual_friend(friend)))
+			context['accounts'] = friends
+	else:		
+		return HttpResponse("You must be friends to view their friends list.")
+	return render(request, "friend/friends_all.html", context)

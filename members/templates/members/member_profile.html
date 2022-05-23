@@ -45,7 +45,7 @@
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                           <li><a class="dropdown-item" href="{% url 'profile' user.id %}">Profile</a></li>
-                          <li><a class="dropdown-item" href="#">Friends</a></li>
+                          <li><a class="dropdown-item" href="{% url 'friends-list' user.id%}">Friends</a></li>
                           <li><a class="dropdown-item" href="{% url 'profile_edit' %}">Edit Profile</a></li>
                           <li><a class="dropdown-item" href="{% url 'logout'%}">Logout</a></li>
                         </ul>
@@ -83,7 +83,7 @@
                 <p class="text-secondary fs-5">Email: <br><span class="fs-6 text-dark fw-bold ms-1">{{ user.email }}</span></p>
                 <p class="text-secondary fs-5">Name: <br><span class="fs-6 text-dark fw-bold ms-1">{{ user.first_name }} {{ user.last_name }}</span></p>
                 <a href="{% url 'profile_edit'%}" class="btn btn-primary fw-bold">Edit Profile</a>
-                <a href="{% url 'profile_edit'%}" class="btn btn-primary fw-bold">Friends: {{ friends|length }}</a>
+                <a href="{% url 'friends-list' user_id %}" class="btn btn-primary fw-bold">Friends: {{ friends|length }}</a>
                 {% if friend_request%}
                 <div class="d-block mt-3">
                     <a href="{% url 'friend-requests' user.id%}" class="btn btn-primary fw-bold">
@@ -95,7 +95,7 @@
                 <p class="text-secondary fs-5">Username: <br><span class="fs-6 text-dark fw-bold ms-1">{{ account }}</span></p>
                 <p class="text-secondary fs-5">Email: <br><span class="fs-6 text-dark fw-bold ms-1">{{ account.email }}</span></p>
                 <p class="text-secondary fs-5">Name: <br><span class="fs-6 text-dark fw-bold ms-1">{{ account.first_name }} {{ account.last_name }}</span></p>
-                <a href="{% url 'profile_edit'%}" class="btn btn-primary fw-bold">Friends: {{ friends|length }}</a>
+                <a href="{% url 'friends-list' user_id %}" class="btn btn-primary fw-bold">Friends: {{ friends|length }}</a>
                 {% if is_friend %}
                     <button class="btn btn-danger fw-bold" id="remove-friend-btn">Unfriend</button>
                 {% elif request_sent == 0%}

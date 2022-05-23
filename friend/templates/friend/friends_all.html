@@ -45,7 +45,7 @@
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                           <li><a class="dropdown-item" href="{% url 'profile' user.id %}">Profile</a></li>
-                          <li><a class="dropdown-item" href="{% url 'friends-list' user.id%}">Friends</a></li>
+                          <li><a class="dropdown-item" href="#">Friends</a></li>
                           <li><a class="dropdown-item" href="{% url 'profile_edit' %}">Edit Profile</a></li>
                           <li><a class="dropdown-item" href="{% url 'logout'%}">Logout</a></li>
                         </ul>
@@ -66,7 +66,7 @@
 <div class="container">
     <div class="row">
         <div class="col-12 mt-5">
-            <h1>Search Results</h1>
+            <h1>Your Friends</h1>
         </div>
         <div class="col-12">
             <form class="ms-lg-3 d-inline d-lg-none" id="search-small">
@@ -78,7 +78,7 @@
     </div>
     <div class="row">
         {% if accounts %}
-            <div class="col-12 col-lg-6 ms-lg-3 me-lg-auto">
+            <div class="col-12 col-lg-6">
                 {% for account in accounts %}
                     <div class="card mt-3">
                         <div class="card-body">
@@ -97,12 +97,6 @@
                     </div>
                 {% endfor %}
             </div>
-        {% else %}
-        <div class="col-12">
-            <div>
-                <h2 class="text-secondary">No results found.</h2>
-            </div>
-        </div>
         {% endif %}
     </div>
 </div>
