@@ -1,0 +1,94 @@
+ 
+.text-gray {
+    color: #7b7b7b;
+  }
+
+ /*Navbar Styles */
+ .nav-item a,
+ .login-btn {
+    font-weight: 500;
+    color: #040921;
+}
+
+.login-btn {
+     background: rgba(4, 9, 33, 0.04);
+     border-radius: 8px;
+     border-color: rgba(4, 9, 33, 0.04);
+ }
+
+ .register-btn {
+    font-weight: 500;
+ }
+
+ .nav-item {
+    position: relative;
+ }
+
+ .social-icon{
+    margin-right: 21px;
+ }
+
+/*Hero Section */
+
+/* Friend Card */
+.card{
+    border-radius: 12px;
+}
+/*Footer Styles Start Here */
+
+ footer {
+    background-color: #040921;
+    color: #ffffff;
+    border-radius: 34px 34px 0 0;
+    padding-top: 55px;
+}
+
+.footer-logo-container,
+.footer-btn-container,
+.social-media-container {
+    margin-top: 21px;
+
+}
+
+.footer-logo-container{
+    margin-bottom: 34px;
+}
+
+.copyright {
+    display: flex;
+    margin-top: 21px;
+    margin-bottom: 34px;
+    justify-content: center;
+}
+
+.footer-heading {
+    margin-bottom: 21px;
+}
+
+.footer-links {
+    padding-left: 0px;
+}
+
+.footer-links li {
+    list-style-type: none;
+    margin-top: 8px;
+}
+
+.footer-links a {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+ @media screen and (min-width: 700px) {
+      /* Footer Styles Start Here */
+
+
+    .footer-container {
+        margin-left: 89px;
+    }
+
+    .copyright {
+        padding-right: 144px;
+        justify-content: end;
+    }
+ }
