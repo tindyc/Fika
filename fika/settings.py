@@ -151,5 +151,3 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 BASE_URL = "http://localhost:8000/"
-
-GOOGLE_API_KEY = os.environ.get("GOOGLE_API_KEY")
