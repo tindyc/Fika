@@ -6,6 +6,7 @@ name = "pypi"
 [packages]
 django = "*"
 whitenoise = "*"
+requests = "*"
 
 [dev-packages]
 pylint = "*"
